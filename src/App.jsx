@@ -40,9 +40,10 @@ export default function App() {
     [answers]
   );
 
-  const { classScores, profScores, faction, flags, exclusions } = useMemo(() => {
+  const { classScores, profScores, specScores, faction, flags, exclusions } = useMemo(() => {
     const cs = { ...initialClassScores };
     const ps = { ...initialProfScores };
+    const ss = {};
     let fac = null;
     const fl = {};
     const excl = new Set();
@@ -83,6 +84,13 @@ export default function App() {
           });
         }
 
+        // Spec scores
+        if (a.specScores) {
+          Object.entries(a.specScores).forEach(([spec, pts]) => {
+            ss[spec] = (ss[spec] || 0) + pts;
+          });
+        }
+
         // Flags
         if (a.flags) {
           if (a.flags.faction) fac = a.flags.faction;
@@ -93,7 +101,7 @@ export default function App() {
       });
     });
 
-    return { classScores: cs, profScores: ps, faction: fac, flags: fl, exclusions: excl };
+    return { classScores: cs, profScores: ps, specScores: ss, faction: fac, flags: fl, exclusions: excl };
   }, [answers]);
 
   // Clamp currentQ to visible range
@@ -187,6 +195,7 @@ export default function App() {
           <Results
             classScores={classScores}
             profScores={profScores}
+            specScores={specScores}
             faction={faction}
             flags={flags}
             exclusions={exclusions}

@@ -342,6 +342,30 @@ body {
   );
 }
 
+.result-card.spec-result {
+  border-color: var(--border);
+  background: linear-gradient(
+    135deg,
+    var(--bg-card) 0%,
+    rgba(212, 160, 23, 0.03) 100%
+  );
+}
+
+.result-card.spec-result h2 {
+  font-size: 1.3rem;
+}
+
+.spec-score {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2px 10px;
+}
+
 .result-card h2 {
   font-family: "Cinzel", serif;
   font-size: 1.6rem;

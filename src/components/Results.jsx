@@ -4,11 +4,13 @@ import {
   raceClassMap,
   recommendedRace,
   classProfSynergy,
+  specs,
 } from "../data/classData";
 
 export default function Results({
   classScores,
   profScores,
+  specScores = {},
   faction,
   flags,
   exclusions = new Set(),
@@ -29,6 +31,16 @@ export default function Results({
 
   const [topClassKey, topClassScore] = validClasses[0];
   const topClass = classes[topClassKey];
+
+  // Determine recommended spec for the winning class
+  const classSpecs = specs[topClassKey] || [];
+  const specPrefix = topClassKey + "_";
+  const specEntries = classSpecs.map((s) => ({
+    ...s,
+    score: specScores[specPrefix + s.key] || 0,
+  }));
+  specEntries.sort((a, b) => b.score - a.score);
+  const topSpec = specEntries[0] || null;
 
   // Determine faction — if "any", pick based on best race for the class
   let finalFaction = faction;
@@ -107,6 +119,15 @@ export default function Results({
           ))}
         </div>
       </div>
+
+      {topSpec && (
+        <div className="result-card spec-result">
+          <h3>Recommended Spec</h3>
+          <h2 style={{ color: topClass.color }}>{topSpec.name}</h2>
+          <p className="result-desc">{topSpec.description}</p>
+          <span className="spec-score">{topSpec.score} pts</span>
+        </div>
+      )}
 
       <div className="result-row">
         <div className="result-card">

@@ -194,6 +194,57 @@ export const recommendedRace = {
   },
 };
 
+// WoW Forever specs — 27 specs across 9 classes
+// Includes reworked talents: Survival melee, Prot Paladin Seal of Fury,
+// Enhancement tanking, 113 new talents, 277 rewritten
+export const specs = {
+  warrior: [
+    { key: "arms", name: "Arms", description: "Melee DPS — burst windows and single-target execution." },
+    { key: "fury", name: "Fury", description: "Melee DPS — dual-wield sustained damage and cleave." },
+    { key: "protection", name: "Protection", description: "Tank — shield-based mitigation and threat generation." },
+  ],
+  paladin: [
+    { key: "holy", name: "Holy", description: "Healer — strong single-target and raid healing." },
+    { key: "protection", name: "Protection", description: "Tank — reworked with Seal of Fury for threat." },
+    { key: "retribution", name: "Retribution", description: "Melee DPS — holy power burst and utility." },
+  ],
+  hunter: [
+    { key: "beastmastery", name: "Beast Mastery", description: "Ranged DPS — pet-focused with beast synergy." },
+    { key: "marksmanship", name: "Marksmanship", description: "Ranged DPS — precise shots, Lone Wolf option." },
+    { key: "survival", name: "Survival", description: "Melee DPS — reworked melee with traps and pet." },
+  ],
+  rogue: [
+    { key: "assassination", name: "Assassination", description: "Melee DPS — poisons, Mutilate, and bleeds." },
+    { key: "combat", name: "Combat", description: "Melee DPS — sustained cleave and Blade Flurry." },
+    { key: "subtlety", name: "Subtlety", description: "Melee DPS — stealth burst and Shadow Dance." },
+  ],
+  priest: [
+    { key: "discipline", name: "Discipline", description: "Healer — shields, Penance, and damage-to-healing." },
+    { key: "holy", name: "Holy", description: "Healer — throughput healing and raid cooldowns." },
+    { key: "shadow", name: "Shadow", description: "Ranged DPS — DoTs, Shadow Word: Pain, and Mind Blast." },
+  ],
+  shaman: [
+    { key: "elemental", name: "Elemental", description: "Ranged DPS — Lava Burst crits and Lightning." },
+    { key: "enhancement", name: "Enhancement", description: "Melee DPS — can tank in Forever, Windfury procs." },
+    { key: "restoration", name: "Restoration", description: "Healer — Riptide, Chain Heal, and totems." },
+  ],
+  mage: [
+    { key: "arcane", name: "Arcane", description: "Ranged DPS — Arcane Blast stacking and mana management." },
+    { key: "fire", name: "Fire", description: "Ranged DPS — Pyroblast crits and burst combos." },
+    { key: "frost", name: "Frost", description: "Ranged DPS — AoE control, Blizzard, and shatter combos." },
+  ],
+  warlock: [
+    { key: "affliction", name: "Affliction", description: "Ranged DPS — DoTs, drain, and multi-target pressure." },
+    { key: "demonology", name: "Demonology", description: "Ranged DPS — empowered demons and pet synergy." },
+    { key: "destruction", name: "Destruction", description: "Ranged DPS — direct burst damage and Shadow Bolt." },
+  ],
+  druid: [
+    { key: "balance", name: "Balance", description: "Ranged DPS — Eclipse procs, Starfire and Wrath." },
+    { key: "feral", name: "Feral", description: "Melee DPS or Tank — stealth, bleeds, Bear Form tanking." },
+    { key: "restoration", name: "Restoration", description: "Healer — HoTs, Wild Growth, and Swiftmend." },
+  ],
+};
+
 // Optimal profession pairings per class in WoW Forever
 // Engineering is S-tier for everyone (gadgets, teleports, PvP tools, camp repair)
 // Blacksmithing now crafts Mail + Plate
