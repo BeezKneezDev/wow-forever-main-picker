@@ -137,28 +137,55 @@ export const raceClassMap = {
 };
 
 // Recommended race per class per faction, with role-specific overrides
+// Updated for WoW Forever reworked racials:
+//   Human:    Will to Survive (stun remove), Perception, Sword Spec (2% crit), Human Spirit (5% spirit)
+//   Dwarf:    Stoneform (poison/disease + phys dmg red), Mace Spec (1% crit), Big Game Hunter (5% beast dmg)
+//   Night Elf: Elune's Light (10% crit 15s CD!), Shadowmeld, Quickness (1% dodge + 2% run)
+//   Gnome:    Escape Artist, Eureka! (reduced cost + 10% dmg/heal next 3), Expansive Mind (5% mana/rage/energy)
+//   Orc:      Blood Fury (10% AP+SP 15s), Shatter Curse (curse immune + magic dmg red), Axe Spec (1% crit), Hardiness (20% stun red)
+//   Undead:   WotF, Cannibalize (HP+Mana), Touch of the Grave (passive drain), Underwater Breathing
+//   Tauren:   War Stomp (2s AoE stun), Cultivation (grow herbs), Plainsrunning (move speed), Endurance (5% HP + 1% hit)
+//   Troll:    Berserking (10% haste 10s), Rapid Regeneration (50% HP regen), Beast Slaying (5% beast dmg), Regen (10% in combat)
 export const recommendedRace = {
   alliance: {
-    warrior:  { default: "human",    tank: "human",    dps: "human" },      // sword/mace spec, perception
-    paladin:  { default: "human",    tank: "human",    healer: "human" },   // sword/mace spec
-    hunter:   { default: "dwarf",    dps: "nightelf" },                     // dwarf gun spec + stoneform; NE shadowmeld
-    rogue:    { default: "human",    dps: "human" },                        // perception, sword spec
-    priest:   { default: "dwarf",    healer: "dwarf",  dps: "human" },      // fear ward
-    shaman:   { default: "dwarf",    tank: "dwarf", healer: "dwarf", dps: "dwarf" }, // stoneform
-    mage:     { default: "gnome",    dps: "gnome" },                        // escape artist, int
-    warlock:  { default: "gnome",    dps: "gnome" },                        // escape artist, int
-    druid:    { default: "nightelf", tank: "nightelf", healer: "nightelf", dps: "nightelf" },
+    // Warrior: Human Will to Survive + Sword 2% crit for DPS; Human stun remove for tank too
+    warrior:  { default: "human",    tank: "human",     dps: "nightelf" },   // NE Elune's Light 10% crit burst; Human stun break for tank
+    // Paladin: Human Sword 2% crit + Will to Survive; Dwarf Stoneform for tank
+    paladin:  { default: "human",    tank: "dwarf",     healer: "human" },   // Dwarf Stoneform poison/disease cleanse for tank
+    // Hunter: NE Elune's Light 10% crit burst is huge; Dwarf Stoneform for PvP survivability
+    hunter:   { default: "nightelf", dps: "nightelf" },                      // Elune's Light + Shadowmeld for traps
+    // Rogue: NE Elune's Light 10% crit + Shadowmeld double stealth; Human Perception + Sword 2% crit
+    rogue:    { default: "nightelf", dps: "nightelf" },                      // Elune's Light crit burst + Shadowmeld; Human close 2nd
+    // Priest: Dwarf Chastise + Desperate Prayer + Stoneform for healer; Gnome Eureka for Shadow
+    priest:   { default: "dwarf",    healer: "dwarf",   dps: "gnome" },      // Gnome Eureka 10% dmg on next 3 spells
+    // Shaman: Dwarf Stoneform great for tank/healer survivability; Dwarf only option anyway
+    shaman:   { default: "dwarf",    tank: "dwarf",     healer: "dwarf", dps: "dwarf" },
+    // Mage: Gnome Eureka! (10% dmg next 3 spells) + Expansive Mind 5% mana + Escape Artist
+    mage:     { default: "gnome",    dps: "gnome" },                         // Eureka! is insane for mage burst
+    // Warlock: Gnome Eureka! + Expansive Mind; strong for all warlock specs
+    warlock:  { default: "gnome",    dps: "gnome" },                         // Eureka! + Escape Artist
+    // Druid: Night Elf only option on Alliance
+    druid:    { default: "nightelf", tank: "nightelf",  healer: "nightelf", dps: "nightelf" },
   },
   horde: {
-    warrior:  { default: "orc",     tank: "tauren",   dps: "orc" },        // tauren war stomp + HP for tank; orc stun resist + blood fury
-    paladin:  { default: "undead",  tank: "undead",   healer: "undead" },   // WotF
-    hunter:   { default: "orc",     dps: "troll" },                         // orc pet dmg; troll berserking
-    rogue:    { default: "undead",  dps: "orc" },                           // WotF for PvP; orc stun resist
-    priest:   { default: "undead",  healer: "troll",   dps: "undead" },     // WotF; troll berserking for heals
-    shaman:   { default: "orc",     tank: "tauren", healer: "troll", dps: "orc" }, // tauren HP + war stomp for tank
-    mage:     { default: "undead",  dps: "troll" },                         // WotF for PvP; troll berserking
-    warlock:  { default: "undead",  dps: "orc" },                           // WotF; orc pet dmg
-    druid:    { default: "tauren",  tank: "tauren",    healer: "tauren", dps: "tauren" },
+    // Warrior: Orc Blood Fury 10% AP + Hardiness 20% stun red for DPS; Tauren 5% HP + War Stomp + 1% hit for tank
+    warrior:  { default: "orc",      tank: "tauren",    dps: "orc" },
+    // Paladin: Undead WotF + Touch of the Grave for Ret; Tauren War Stomp + 5% HP for Prot
+    paladin:  { default: "undead",   tank: "tauren",    healer: "undead",  dps: "undead" },
+    // Hunter: Orc Blood Fury 10% AP; Troll Berserking 10% haste + Rapid Regen
+    hunter:   { default: "orc",      dps: "troll" },                         // Troll haste for ranged; Orc raw AP
+    // Rogue: Orc Hardiness 20% stun red + Blood Fury; Undead WotF for PvP
+    rogue:    { default: "orc",      dps: "orc" },                           // Hardiness + Blood Fury; Undead close 2nd
+    // Priest: Troll Berserking 10% haste for healer throughput; Undead WotF + Shadow for DPS
+    priest:   { default: "undead",   healer: "troll",   dps: "undead" },
+    // Shaman: Orc Blood Fury 10% AP+SP; Tauren War Stomp + HP for tank; Troll haste for healer
+    shaman:   { default: "orc",      tank: "tauren",    healer: "troll",   dps: "orc" },
+    // Mage: Troll Berserking 10% haste for casting; Orc Blood Fury 10% SP; Undead WotF PvP
+    mage:     { default: "troll",    dps: "troll" },                         // Berserking haste + Rapid Regen; Undead for PvP
+    // Warlock: Orc Blood Fury 10% SP + Shatter Curse (ironic anti-lock racial); Undead WotF
+    warlock:  { default: "orc",      dps: "orc" },                           // Blood Fury SP; Undead for PvP
+    // Druid: Tauren only option on Horde
+    druid:    { default: "tauren",   tank: "tauren",    healer: "tauren",  dps: "tauren" },
   },
 };
 
