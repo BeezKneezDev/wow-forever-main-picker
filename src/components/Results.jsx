@@ -130,11 +130,13 @@ export default function Results({
             <span className="prof-icon">{prof1.icon}</span>
             <span>{prof1.name}</span>
             <span className="prof-type">{prof1.type}</span>
+            {prof1.tier && <span className={`prof-tier tier-${prof1.tier.toLowerCase()}`}>{prof1.tier}-Tier</span>}
           </div>
           <div className="prof-pick">
             <span className="prof-icon">{prof2.icon}</span>
             <span>{prof2.name}</span>
             <span className="prof-type">{prof2.type}</span>
+            {prof2.tier && <span className={`prof-tier tier-${prof2.tier.toLowerCase()}`}>{prof2.tier}-Tier</span>}
           </div>
         </div>
       </div>

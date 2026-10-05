@@ -435,33 +435,38 @@ const questions = [
   {
     id: "gold-making",
     category: "Professions",
-    text: "How do you want to spend your gold-making time?",
+    text: "How do you want to spend your profession time?",
     type: "single",
     answers: [
       {
-        text: "Crafting weapons and armor",
+        text: "Crafting weapons and armor to gear up myself and guildies",
         classScores: {},
         profScores: { blacksmithing: 4, leatherworking: 3, tailoring: 2, mining: 2, skinning: 1 },
       },
       {
-        text: "Gathering nodes — it's meditative",
+        text: "Gathering nodes out in the world — it's meditative",
         classScores: {},
         profScores: { mining: 4, herbalism: 4, skinning: 3 },
       },
       {
-        text: "Brewing potions and flasks",
+        text: "Brewing potions, flasks, and combat elixirs",
         classScores: {},
         profScores: { alchemy: 5, herbalism: 3 },
       },
       {
-        text: "Building bombs, trinkets, and gadgets",
+        text: "Gadgets, bombs, teleports, and toys — Engineering all the way",
         classScores: {},
         profScores: { engineering: 5, mining: 3 },
       },
       {
-        text: "Disenchanting and selling enchants",
+        text: "Disenchanting loot and selling enchants",
         classScores: {},
         profScores: { enchanting: 5, tailoring: 2 },
+      },
+      {
+        text: "Camp buffs and utility — I want the best camp setup",
+        classScores: {},
+        profScores: { engineering: 3, blacksmithing: 2, herbalism: 2, tailoring: 2, alchemy: 1 },
       },
       {
         text: "Whatever's optimal for my class",

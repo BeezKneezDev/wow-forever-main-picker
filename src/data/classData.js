@@ -70,16 +70,21 @@ export const classes = {
   },
 };
 
+// WoW Forever professions — 600+ new recipes, camp buffs, Legacy Talents
+// S-Tier: Engineering, Alchemy, Enchanting
+// A-Tier: Leatherworking, Blacksmithing, Tailoring, Mining, Herbalism
+// B-Tier: Skinning
+// Healing Potions moved to First Aid
 export const professions = {
-  mining: { name: "Mining", icon: "\u26CF\uFE0F", type: "Gathering" },
-  herbalism: { name: "Herbalism", icon: "\uD83C\uDF3F", type: "Gathering" },
-  skinning: { name: "Skinning", icon: "\uD83E\uDE93", type: "Gathering" },
-  alchemy: { name: "Alchemy", icon: "\u2697\uFE0F", type: "Crafting" },
-  blacksmithing: { name: "Blacksmithing", icon: "\uD83D\uDD28", type: "Crafting" },
-  leatherworking: { name: "Leatherworking", icon: "\uD83E\uDDE5", type: "Crafting" },
-  tailoring: { name: "Tailoring", icon: "\uD83E\uDEA1", type: "Crafting" },
-  enchanting: { name: "Enchanting", icon: "\uD83D\uDCAB", type: "Crafting" },
-  engineering: { name: "Engineering", icon: "\u2699\uFE0F", type: "Crafting" },
+  mining:         { name: "Mining",         icon: "\u26CF\uFE0F", type: "Gathering", tier: "A" },
+  herbalism:      { name: "Herbalism",      icon: "\uD83C\uDF3F", type: "Gathering", tier: "A", camp: "Incense Candle (Intellect)" },
+  skinning:       { name: "Skinning",       icon: "\uD83E\uDE93", type: "Gathering", tier: "B" },
+  alchemy:        { name: "Alchemy",        icon: "\u2697\uFE0F", type: "Crafting",  tier: "S", camp: "Combat potions & offensive effects" },
+  blacksmithing:  { name: "Blacksmithing",  icon: "\uD83D\uDD28", type: "Crafting",  tier: "A", camp: "Sharpening Wheel (Strength)" },
+  leatherworking: { name: "Leatherworking", icon: "\uD83E\uDDE5", type: "Crafting",  tier: "A" },
+  tailoring:      { name: "Tailoring",      icon: "\uD83E\uDEA1", type: "Crafting",  tier: "A", camp: "Faction Banner (Spirit)" },
+  enchanting:     { name: "Enchanting",     icon: "\uD83D\uDCAB", type: "Crafting",  tier: "S" },
+  engineering:    { name: "Engineering",    icon: "\u2699\uFE0F", type: "Crafting",  tier: "S", camp: "Repair vendor" },
 };
 
 // WoW Forever race/class combos (includes 6 new combos marked with *)
@@ -189,15 +194,17 @@ export const recommendedRace = {
   },
 };
 
-// Optimal profession pairings per class
+// Optimal profession pairings per class in WoW Forever
+// Engineering is S-tier for everyone (gadgets, teleports, PvP tools, camp repair)
+// Blacksmithing now crafts Mail + Plate
 export const classProfSynergy = {
-  warrior: ["blacksmithing", "mining"],
-  paladin: ["blacksmithing", "mining"],
-  hunter: ["leatherworking", "skinning"],
-  rogue: ["engineering", "mining"],
-  priest: ["tailoring", "enchanting"],
-  shaman: ["leatherworking", "skinning"],
-  mage: ["tailoring", "enchanting"],
-  warlock: ["tailoring", "enchanting"],
-  druid: ["alchemy", "herbalism"],
+  warrior: ["engineering", "mining"],        // Engi gadgets + camp repair; BS/Mining close 2nd for plate + Strength camp buff
+  paladin: ["engineering", "mining"],        // Engi gadgets; BS/Mining also strong for plate
+  hunter:  ["engineering", "mining"],        // Engi is king for hunters (gadgets + ammo); LW/Skinning for gear
+  rogue:   ["engineering", "mining"],        // Grenades, gadgets, PvP tools — engi is essential for rogues
+  priest:  ["tailoring", "enchanting"],      // Both S/A-tier, self-enchant, Spirit camp buff, no gathering needed
+  shaman:  ["engineering", "mining"],        // Engi gadgets; LW/Skinning for gear if prefer crafting armor
+  mage:    ["tailoring", "enchanting"],      // Enchanting S-tier, Tailoring camp Spirit buff, self-sufficient
+  warlock: ["tailoring", "enchanting"],      // Same as mage; Alchemy/Herb also strong (Int camp buff)
+  druid:   ["alchemy", "herbalism"],         // Alchemy S-tier, Herb camp Int buff, self-sufficient farming
 };

@@ -425,6 +425,33 @@ body {
   letter-spacing: 1px;
 }
 
+.prof-tier {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tier-s {
+  background: rgba(212, 160, 23, 0.2);
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+}
+
+.tier-a {
+  background: rgba(76, 175, 80, 0.15);
+  color: #6abf6e;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.tier-b {
+  background: rgba(150, 150, 170, 0.1);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
 .runner-up {
   margin-top: 20px;
   padding: 12px;
