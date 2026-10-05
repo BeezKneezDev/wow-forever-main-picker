@@ -175,8 +175,8 @@ export const recommendedRace = {
   horde: {
     // Warrior: Orc Blood Fury 10% AP + Hardiness 20% stun red for DPS; Tauren 5% HP + War Stomp + 1% hit for tank
     warrior:  { default: "orc",      tank: "tauren",    dps: "orc" },
-    // Paladin: Undead WotF + Touch of the Grave for Ret; Tauren War Stomp + 5% HP for Prot
-    paladin:  { default: "undead",   tank: "tauren",    healer: "undead",  dps: "undead" },
+    // Paladin: Undead only option on Horde — WotF + Touch of the Grave + Cannibalize (HP+Mana)
+    paladin:  { default: "undead",   tank: "undead",    healer: "undead",  dps: "undead" },
     // Hunter: Orc Blood Fury 10% AP; Troll Berserking 10% haste + Rapid Regen
     hunter:   { default: "orc",      dps: "troll" },                         // Troll haste for ranged; Orc raw AP
     // Rogue: Orc Hardiness 20% stun red + Blood Fury; Undead WotF for PvP
