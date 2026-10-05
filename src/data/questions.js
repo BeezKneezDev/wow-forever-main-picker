@@ -301,19 +301,24 @@ const questions = [
     ],
   },
   {
-    id: "burst-vs-sustain",
+    id: "dots-vs-crits",
     category: "Gameplay Feel",
-    text: "Big burst damage or sustained pressure?",
+    text: "DoTs or big crits?",
     type: "single",
     answers: [
       {
-        text: "Burst — one-shot combos and huge crits",
-        classScores: { rogue: 3, mage: 3, warrior: 2, shaman: 1 },
+        text: "Big fat crits — I live for those massive numbers",
+        classScores: { mage: 4, rogue: 3, warrior: 2, shaman: 2 },
         profScores: {},
       },
       {
-        text: "Sustain — DoTs, attrition, wear them down",
-        classScores: { warlock: 4, priest: 2, druid: 2 },
+        text: "DoTs — I want to watch their health slowly drain away",
+        classScores: { warlock: 5, priest: 3, druid: 2 },
+        profScores: {},
+      },
+      {
+        text: "A mix of both",
+        classScores: { druid: 2, shaman: 2, hunter: 2, priest: 1 },
         profScores: {},
       },
       {
