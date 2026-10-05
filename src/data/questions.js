@@ -334,6 +334,34 @@ const questions = [
     ],
   },
   {
+    id: "target-style",
+    category: "Gameplay Feel",
+    text: "Single target, cleave, or AoE?",
+    type: "single",
+    answers: [
+      {
+        text: "Single target — I want to melt one target as fast as possible",
+        classScores: { rogue: 4, warrior: 3, warlock: 2, hunter: 2 },
+        profScores: {},
+      },
+      {
+        text: "Cleave — hitting 2-3 targets at once feels great",
+        classScores: { warrior: 3, shaman: 2, druid: 2, paladin: 1 },
+        profScores: {},
+      },
+      {
+        text: "AoE — I want to pull the whole room and blast it down",
+        classScores: { mage: 5, warlock: 2, priest: 1, druid: 1 },
+        profScores: {},
+      },
+      {
+        text: "A bit of everything depending on the situation",
+        classScores: { druid: 2, shaman: 2, hunter: 1, mage: 1 },
+        profScores: {},
+      },
+    ],
+  },
+  {
     id: "mobility",
     category: "Gameplay Feel",
     text: "How much do you care about mobility and movement?",
