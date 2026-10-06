@@ -105,6 +105,74 @@ const questions = [
     ],
   },
 
+  // ── ROLE-FANTASY QUESTIONS (conditional on healer/tank/hybrid) ──
+  {
+    id: "healing-fantasy",
+    category: "Fundamentals",
+    text: "What kind of healer fantasy appeals to you?",
+    type: "single",
+    condition: { questionId: "role", hasAnswer: ["Healer", "Hybrid / Flexible"] },
+    answers: [
+      {
+        text: "A holy warrior in plate, using divine power to protect",
+        classScores: { paladin: 8 },
+        specScores: { paladin_holy: 5 },
+      },
+      {
+        text: "A nature healer — HoTs, shifting forms, versatile",
+        classScores: { druid: 5 },
+        specScores: { druid_restoration: 5 },
+      },
+      {
+        text: "Chain heals bouncing off totems, elemental power",
+        classScores: { shaman: 5 },
+        specScores: { shaman_restoration: 5 },
+      },
+      {
+        text: "A devoted spellcaster — pure healing or discipline shields",
+        classScores: { priest: 3 },
+        specScores: { priest_holy: 3, priest_discipline: 3 },
+      },
+      {
+        text: "I want to heal, but none of these specifically",
+        classScores: { paladin: 1, druid: 1, shaman: 1, priest: 1 },
+      },
+    ],
+  },
+  {
+    id: "tanking-fantasy",
+    category: "Fundamentals",
+    text: "What kind of tank fantasy appeals to you?",
+    type: "single",
+    condition: { questionId: "role", hasAnswer: ["Tank", "Hybrid / Flexible"] },
+    answers: [
+      {
+        text: "Sword and board, commanding shouts, holding the line",
+        classScores: { warrior: 3 },
+        specScores: { warrior_protection: 3 },
+      },
+      {
+        text: "Holy shield, consecration, righteous defense",
+        classScores: { paladin: 5 },
+        specScores: { paladin_protection: 5 },
+      },
+      {
+        text: "Bear form, massive HP, nature-powered resilience",
+        classScores: { druid: 5 },
+        specScores: { druid_feral: 5 },
+      },
+      {
+        text: "Earthen totems, rockbiter, elemental toughness",
+        classScores: { shaman: 6 },
+        specScores: { shaman_enhancement: 5 },
+      },
+      {
+        text: "I want to tank, but none of these specifically",
+        classScores: { warrior: 1, paladin: 1, druid: 1, shaman: 1 },
+      },
+    ],
+  },
+
   // ── FACTION ──
   {
     id: "faction",

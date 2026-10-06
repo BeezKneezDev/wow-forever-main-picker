@@ -29,13 +29,15 @@ function getVisibleQuestions(answers) {
     const parentQ = questions.find((pq) => pq.id === questionId);
     if (!parentQ) return false;
 
+    const acceptedAnswers = Array.isArray(hasAnswer) ? hasAnswer : [hasAnswer];
+
     let matched;
     if (Array.isArray(parentAnswer)) {
       matched = parentAnswer.some(
-        (idx) => parentQ.answers[idx]?.text === hasAnswer
+        (idx) => acceptedAnswers.includes(parentQ.answers[idx]?.text)
       );
     } else if (typeof parentAnswer === "number") {
-      matched = parentQ.answers[parentAnswer]?.text === hasAnswer;
+      matched = acceptedAnswers.includes(parentQ.answers[parentAnswer]?.text);
     } else {
       // No answer yet — condition not met
       matched = false;
