@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from "react";
 import questions from "./data/questions";
-import { classes, professions } from "./data/classData";
+import { classes, professions, raceClassMap } from "./data/classData";
 import QuestionCard from "./components/QuestionCard";
 import ProgressBar from "./components/ProgressBar";
 import ScorePanel from "./components/ScorePanel";
@@ -13,20 +13,35 @@ const initialClassScores = Object.fromEntries(
 const initialProfScores = Object.fromEntries(
   Object.keys(professions).map((k) => [k, 0])
 );
+const initialRaceScores = Object.fromEntries(
+  Object.keys(raceClassMap).map((k) => [k, 0])
+);
 
-// Filter questions based on conditional logic
+// Filter questions based on conditional logic (supports invert flag)
 function getVisibleQuestions(answers) {
   return questions.filter((q) => {
     if (!q.condition) return true;
-    const { questionId, hasAnswer } = q.condition;
+    const { questionId, hasAnswer, invert } = q.condition;
     const parentAnswer = answers[questionId];
-    if (!Array.isArray(parentAnswer)) return false;
-    // Check if the parent multi-select has the required answer text selected
+
+    // For single-select questions, parentAnswer is a number index
+    // For multi-select questions, parentAnswer is an array of indices
     const parentQ = questions.find((pq) => pq.id === questionId);
     if (!parentQ) return false;
-    return parentAnswer.some(
-      (idx) => parentQ.answers[idx]?.text === hasAnswer
-    );
+
+    let matched;
+    if (Array.isArray(parentAnswer)) {
+      matched = parentAnswer.some(
+        (idx) => parentQ.answers[idx]?.text === hasAnswer
+      );
+    } else if (typeof parentAnswer === "number") {
+      matched = parentQ.answers[parentAnswer]?.text === hasAnswer;
+    } else {
+      // No answer yet — condition not met
+      matched = false;
+    }
+
+    return invert ? !matched : matched;
   });
 }
 
@@ -40,13 +55,15 @@ export default function App() {
     [answers]
   );
 
-  const { classScores, profScores, specScores, faction, flags, exclusions } = useMemo(() => {
+  const { classScores, profScores, raceScores, specScores, faction, flags, exclusions, raceExclusions } = useMemo(() => {
     const cs = { ...initialClassScores };
     const ps = { ...initialProfScores };
+    const rs = { ...initialRaceScores };
     const ss = {};
     let fac = null;
     const fl = {};
     const excl = new Set();
+    const rExcl = new Set();
 
     Object.entries(answers).forEach(([qId, answer]) => {
       const q = questions.find((q) => q.id === qId);
@@ -64,9 +81,15 @@ export default function App() {
         const a = q.answers[aIdx];
         if (!a) return;
 
-        // Exclusions
+        // Class exclusions
         if (q.type === "exclude" && a.excludeClass) {
           excl.add(a.excludeClass);
+          return;
+        }
+
+        // Race exclusions
+        if (q.type === "exclude" && a.excludeRace) {
+          rExcl.add(a.excludeRace);
           return;
         }
 
@@ -81,6 +104,13 @@ export default function App() {
         if (a.profScores) {
           Object.entries(a.profScores).forEach(([prof, pts]) => {
             ps[prof] = (ps[prof] || 0) + pts;
+          });
+        }
+
+        // Race scores
+        if (a.raceScores) {
+          Object.entries(a.raceScores).forEach(([race, pts]) => {
+            rs[race] = (rs[race] || 0) + pts;
           });
         }
 
@@ -101,7 +131,7 @@ export default function App() {
       });
     });
 
-    return { classScores: cs, profScores: ps, specScores: ss, faction: fac, flags: fl, exclusions: excl };
+    return { classScores: cs, profScores: ps, raceScores: rs, specScores: ss, faction: fac, flags: fl, exclusions: excl, raceExclusions: rExcl };
   }, [answers]);
 
   // Clamp currentQ to visible range
@@ -186,7 +216,9 @@ export default function App() {
             <ScorePanel
               classScores={classScores}
               profScores={profScores}
+              raceScores={raceScores}
               exclusions={exclusions}
+              raceExclusions={raceExclusions}
             />
           </aside>
         </div>
@@ -199,6 +231,7 @@ export default function App() {
             faction={faction}
             flags={flags}
             exclusions={exclusions}
+            raceExclusions={raceExclusions}
           />
           <button className="nav-btn reset-btn" onClick={handleReset}>
             Start Over

@@ -264,8 +264,10 @@ body {
 
 .score-icon {
   width: 20px;
-  text-align: center;
+  height: 20px;
+  border-radius: 4px;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .score-name {
@@ -310,6 +312,7 @@ body {
   font-weight: 700;
 }
 
+
 /* ── RESULTS ── */
 .results-layout {
   max-width: 640px;
@@ -340,6 +343,36 @@ body {
     var(--bg-card) 0%,
     rgba(212, 160, 23, 0.05) 100%
   );
+  overflow: hidden;
+  position: relative;
+}
+
+.class-art-container {
+  display: flex;
+  justify-content: center;
+  margin: -24px -24px 16px;
+  overflow: hidden;
+  max-height: 300px;
+  background: linear-gradient(180deg, transparent 60%, var(--bg-card) 100%);
+  position: relative;
+}
+
+.class-art-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(transparent, var(--bg-card));
+  pointer-events: none;
+}
+
+.class-art {
+  height: 300px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
 }
 
 .result-card.spec-result {
@@ -383,6 +416,28 @@ body {
 
 .result-icon {
   font-size: 2rem;
+}
+
+.result-icon-img {
+  border-radius: 8px;
+  border: 2px solid var(--border);
+}
+
+.result-icon-img.main-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.result-icon-img.spec-icon-img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+}
+
+.result-icon-img.race-icon-img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
 }
 
 .result-desc {
@@ -438,8 +493,11 @@ body {
   flex: 1;
 }
 
-.prof-icon {
-  font-size: 1.5rem;
+.prof-icon-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
 }
 
 .prof-type {
@@ -561,8 +619,10 @@ body {
   width: 28px;
 }
 
-.top-icon {
-  font-size: 1.3rem;
+.top-icon-img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
 }
 
 .top-name {

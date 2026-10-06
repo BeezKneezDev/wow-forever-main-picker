@@ -6,6 +6,7 @@
 // 5. Exclusions
 //
 // Class keys: warrior, paladin, hunter, rogue, priest, shaman, mage, warlock, druid
+// Race keys: human, dwarf, nightelf, gnome, orc, undead, tauren, troll
 
 const questions = [
   // ── FUNDAMENTAL QUESTIONS ──
@@ -20,12 +21,14 @@ const questions = [
         classScores: { warrior: 4, rogue: 4, paladin: 3, shaman: 2, druid: 2 },
         profScores: {},
         specScores: { warrior_arms: 2, warrior_fury: 2, warrior_protection: 1, rogue_assassination: 2, rogue_combat: 2, rogue_subtlety: 2, paladin_retribution: 2, paladin_protection: 1, shaman_enhancement: 2, druid_feral: 2, hunter_survival: 3 },
+        raceScores: { orc: 2, human: 1, nightelf: 1 },
       },
       {
         text: "Ranged",
         classScores: { mage: 4, warlock: 4, hunter: 4, priest: 3, shaman: 2, druid: 2 },
         profScores: {},
         specScores: { mage_fire: 2, mage_frost: 2, mage_arcane: 2, warlock_affliction: 2, warlock_demonology: 2, warlock_destruction: 2, hunter_beastmastery: 2, hunter_marksmanship: 3, priest_shadow: 2, shaman_elemental: 2, druid_balance: 2 },
+        raceScores: { troll: 2, gnome: 2, orc: 1 },
       },
       {
         text: "Both / No Preference",
@@ -44,17 +47,20 @@ const questions = [
       {
         text: "Spellcaster",
         classScores: { mage: 5, warlock: 5, priest: 4, shaman: 2, druid: 2 },
-        profScores: { tailoring: 1, enchanting: 1 },
+        profScores: { tailoring: 2, enchanting: 2 },
+        raceScores: { gnome: 3, troll: 2, undead: 1 },
       },
       {
         text: "Physical",
         classScores: { warrior: 5, rogue: 5, hunter: 4 },
-        profScores: { blacksmithing: 1, leatherworking: 1 },
+        profScores: { blacksmithing: 2, leatherworking: 2 },
+        raceScores: { orc: 2, human: 2, nightelf: 2 },
       },
       {
         text: "Combination",
         classScores: { paladin: 5, shaman: 4, druid: 4, hunter: 1 },
         profScores: {},
+        raceScores: { tauren: 1, dwarf: 1 },
       },
     ],
   },
@@ -70,6 +76,7 @@ const questions = [
         profScores: { blacksmithing: 1, mining: 1 },
         flags: { role: "tank" },
         specScores: { warrior_protection: 10, paladin_protection: 10, druid_feral: 6, shaman_enhancement: 6 },
+        raceScores: { tauren: 3, dwarf: 2, orc: 1 },
       },
       {
         text: "Healer",
@@ -77,6 +84,7 @@ const questions = [
         profScores: { alchemy: 1, tailoring: 1 },
         flags: { role: "healer" },
         specScores: { priest_discipline: 5, priest_holy: 5, paladin_holy: 10, shaman_restoration: 10, druid_restoration: 10 },
+        raceScores: { troll: 2, dwarf: 2, human: 1 },
       },
       {
         text: "DPS",
@@ -84,6 +92,7 @@ const questions = [
         profScores: {},
         flags: { role: "dps" },
         specScores: { warrior_arms: 1, warrior_fury: 1, paladin_retribution: 1, hunter_beastmastery: 1, hunter_marksmanship: 1, hunter_survival: 1, rogue_assassination: 1, rogue_combat: 1, rogue_subtlety: 1, priest_shadow: 1, shaman_elemental: 1, shaman_enhancement: 1, mage_arcane: 1, mage_fire: 1, mage_frost: 1, warlock_affliction: 1, warlock_demonology: 1, warlock_destruction: 1, druid_balance: 1, druid_feral: 1 },
+        raceScores: { nightelf: 2, orc: 2, gnome: 1 },
       },
       {
         text: "Hybrid / Flexible",
@@ -91,6 +100,7 @@ const questions = [
         profScores: {},
         flags: { role: "hybrid" },
         specScores: { druid_feral: 2, druid_balance: 1, druid_restoration: 1, paladin_retribution: 1, paladin_protection: 1, paladin_holy: 1, shaman_elemental: 1, shaman_enhancement: 1, shaman_restoration: 1 },
+        raceScores: { tauren: 1, dwarf: 1, troll: 1 },
       },
     ],
   },
@@ -107,12 +117,14 @@ const questions = [
         classScores: {},
         profScores: {},
         flags: { faction: "alliance" },
+        raceScores: { human: 3, dwarf: 3, nightelf: 3, gnome: 3 },
       },
       {
         text: "Horde",
         classScores: {},
         profScores: {},
         flags: { faction: "horde" },
+        raceScores: { orc: 3, undead: 3, tauren: 3, troll: 3 },
       },
       {
         text: "No Preference",
@@ -120,6 +132,55 @@ const questions = [
         profScores: {},
         flags: { faction: "any" },
       },
+    ],
+  },
+
+  // ── RACE PREFERENCE ──
+  {
+    id: "race-look",
+    category: "Race",
+    text: "What kind of character do you want to look at for hundreds of hours?",
+    type: "single",
+    answers: [
+      {
+        text: "Small and scrappy",
+        classScores: {},
+        profScores: {},
+        raceScores: { gnome: 4, dwarf: 2, troll: 1 },
+      },
+      {
+        text: "Big and imposing",
+        classScores: {},
+        profScores: {},
+        raceScores: { tauren: 5, orc: 3, nightelf: 2 },
+      },
+      {
+        text: "Normal / human-proportioned",
+        classScores: {},
+        profScores: {},
+        raceScores: { human: 4, undead: 3, orc: 2, nightelf: 2, troll: 2 },
+      },
+      {
+        text: "I don't care about looks",
+        classScores: {},
+        profScores: {},
+      },
+    ],
+  },
+  {
+    id: "race-exclusions",
+    category: "Race",
+    text: "Any races you'd never play?",
+    type: "exclude",
+    answers: [
+      { text: "Human", excludeRace: "human" },
+      { text: "Dwarf", excludeRace: "dwarf" },
+      { text: "Night Elf", excludeRace: "nightelf" },
+      { text: "Gnome", excludeRace: "gnome" },
+      { text: "Orc", excludeRace: "orc" },
+      { text: "Undead", excludeRace: "undead" },
+      { text: "Tauren", excludeRace: "tauren" },
+      { text: "Troll", excludeRace: "troll" },
     ],
   },
 
@@ -135,6 +196,7 @@ const questions = [
         classScores: { rogue: 2, mage: 2, warrior: 1, hunter: 1 },
         profScores: { engineering: 2 },
         flags: { pvp: true },
+        raceScores: { undead: 2, orc: 1, human: 1, gnome: 1 },
       },
       {
         text: "PvE",
@@ -146,11 +208,13 @@ const questions = [
         text: "Leveling",
         classScores: { hunter: 3, warlock: 2, druid: 1 },
         profScores: { skinning: 1 },
+        raceScores: { troll: 1 },
       },
       {
         text: "Hardcore",
         classScores: { hunter: 2, paladin: 2, warlock: 1, druid: 1 },
         profScores: { alchemy: 1, herbalism: 1 },
+        raceScores: { dwarf: 2, tauren: 1 },
       },
       {
         text: "Roleplay",
@@ -161,6 +225,7 @@ const questions = [
         text: "Farming / Professions",
         classScores: { hunter: 2, mage: 2, druid: 1 },
         profScores: { mining: 1, herbalism: 1, skinning: 1 },
+        raceScores: { tauren: 1 },
       },
     ],
   },
@@ -178,27 +243,32 @@ const questions = [
         classScores: { rogue: 3, mage: 3, warlock: 2, hunter: 2, shaman: 1 },
         profScores: { engineering: 1 },
         specScores: { rogue_subtlety: 3, mage_frost: 3, warlock_affliction: 2 },
+        raceScores: { undead: 3, human: 2, gnome: 2, orc: 2 },
       },
       {
         text: "Small Group / Arena-style",
         classScores: { shaman: 2, priest: 2, warrior: 2, mage: 2, druid: 1 },
         profScores: {},
+        raceScores: { undead: 1, orc: 1, human: 1 },
       },
       {
         text: "Raid vs. Raid / World PvP",
         classScores: { warrior: 2, mage: 2, priest: 2, shaman: 2, warlock: 1 },
         profScores: { engineering: 1 },
+        raceScores: { tauren: 1 },
       },
       {
         text: "Battlegrounds",
         classScores: { warrior: 2, druid: 2, priest: 2, mage: 1, hunter: 1, paladin: 1 },
         profScores: {},
+        raceScores: { tauren: 1, human: 1 },
       },
       {
         text: "Ganking / Griefing",
         classScores: { rogue: 4, hunter: 2, mage: 2 },
         profScores: { engineering: 2 },
         specScores: { rogue_subtlety: 4 },
+        raceScores: { nightelf: 2, undead: 1 },
       },
     ],
   },
@@ -247,12 +317,14 @@ const questions = [
         classScores: { rogue: 5, druid: 2 },
         profScores: {},
         specScores: { rogue_subtlety: 4, druid_feral: 2 },
+        raceScores: { nightelf: 3 },
       },
       {
         text: "Nice to have sometimes",
         classScores: { druid: 2, rogue: 1 },
         profScores: {},
         specScores: { rogue_subtlety: 1, druid_feral: 1 },
+        raceScores: { nightelf: 1 },
       },
       {
         text: "Don't care about it at all",
@@ -272,6 +344,7 @@ const questions = [
         classScores: { hunter: 5 },
         profScores: {},
         specScores: { hunter_beastmastery: 5 },
+        raceScores: { orc: 2, troll: 1 },
       },
       {
         text: "Summoning demons sounds awesome",
@@ -303,6 +376,7 @@ const questions = [
         text: "Very — I need to be fully self-sufficient",
         classScores: { hunter: 4, warlock: 3, druid: 2, paladin: 1 },
         profScores: { herbalism: 1, alchemy: 1 },
+        raceScores: { troll: 2, undead: 1, dwarf: 1 },
       },
       {
         text: "I mostly group but want to solo when needed",
@@ -327,6 +401,7 @@ const questions = [
         classScores: { mage: 4, rogue: 3, warrior: 2, shaman: 2 },
         profScores: {},
         specScores: { mage_fire: 4, rogue_subtlety: 3, warrior_arms: 2, shaman_elemental: 2, warlock_destruction: 3 },
+        raceScores: { nightelf: 3 },
       },
       {
         text: "DoTs — I want to watch their health slowly drain away",
@@ -344,6 +419,7 @@ const questions = [
         classScores: { hunter: 3, warrior: 1, mage: 1 },
         profScores: {},
         specScores: { hunter_marksmanship: 3, hunter_beastmastery: 2, warrior_fury: 2, mage_arcane: 2 },
+        raceScores: { troll: 1 },
       },
       {
         text: "I'd rather keep people alive than do damage",
@@ -395,6 +471,7 @@ const questions = [
         classScores: { druid: 4, rogue: 2, hunter: 2, mage: 1 },
         profScores: {},
         specScores: { druid_feral: 3, druid_balance: 1 },
+        raceScores: { tauren: 2, nightelf: 1 },
       },
       {
         text: "I'd rather stand my ground and be tough",
@@ -458,12 +535,39 @@ const questions = [
     ],
   },
 
-  // ── PROFESSIONS ──
+  // ── PLAYSTYLE / PROFESSIONS ──
+  {
+    id: "playstyle-intensity",
+    category: "Playstyle",
+    text: "How sweaty are you?",
+    type: "single",
+    answers: [
+      {
+        text: "Full send min-maxer",
+        classScores: {},
+        profScores: { engineering: 4, alchemy: 2 },
+        flags: { intensity: "minmax", profPref: "optimal" },
+      },
+      {
+        text: "I do my research but not losing sleep",
+        classScores: {},
+        profScores: { engineering: 1, alchemy: 1, enchanting: 1 },
+        flags: { intensity: "moderate" },
+      },
+      {
+        text: "Casual vibes",
+        classScores: {},
+        profScores: { herbalism: 2, mining: 2, skinning: 1 },
+        flags: { intensity: "casual" },
+      },
+    ],
+  },
   {
     id: "gold-making",
     category: "Professions",
     text: "How do you want to spend your profession time?",
     type: "single",
+    condition: { questionId: "playstyle-intensity", hasAnswer: "Full send min-maxer", invert: true },
     answers: [
       {
         text: "Crafting weapons and armor to gear up myself and guildies",
@@ -474,6 +578,7 @@ const questions = [
         text: "Gathering nodes out in the world — it's meditative",
         classScores: {},
         profScores: { mining: 4, herbalism: 4, skinning: 3 },
+        raceScores: { tauren: 1 },
       },
       {
         text: "Brewing potions, flasks, and combat elixirs",
@@ -500,6 +605,33 @@ const questions = [
         classScores: {},
         profScores: {},
         flags: { profPref: "optimal" },
+      },
+    ],
+  },
+  {
+    id: "play-pattern",
+    category: "Playstyle",
+    text: "How are you planning to play?",
+    type: "single",
+    condition: { questionId: "playstyle-intensity", hasAnswer: "Full send min-maxer", invert: true },
+    answers: [
+      {
+        text: "One main character only",
+        classScores: {},
+        profScores: { mining: 1, herbalism: 1 },
+        flags: { playPattern: "solo-main" },
+      },
+      {
+        text: "Main plus farming alts",
+        classScores: {},
+        profScores: { blacksmithing: 1, leatherworking: 1, tailoring: 1, alchemy: 1, enchanting: 1, engineering: 1 },
+        flags: { playPattern: "main-plus-alts" },
+      },
+      {
+        text: "Altoholic",
+        classScores: {},
+        profScores: { alchemy: 1 },
+        flags: { playPattern: "altoholic" },
       },
     ],
   },
